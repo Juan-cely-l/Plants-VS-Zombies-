@@ -1,0 +1,98 @@
+package domain;
+
+import javax.swing.*;
+import java.util.Random;
+
+/**
+ * Representa un sol en el dominio del juego.
+ * Es generado por un Girasol o cae del cielo de manera automática.
+ */
+public class Sol {
+    private int xPos; // Posición X del sol en el tablero
+    private int yPos; // Posición Y del sol en el tablero
+    private boolean recolectado; // Indica si el sol ya fue recolectado
+    private int valor =25; // Valor del sol
+    private ImageIcon imagen;
+    /**
+     * Constructor para un sol que cae del cielo.
+     */
+    public Sol() {
+        this.xPos = generarPosicionAleatoria(270, 900); // Rango de posiciones X
+        this.yPos = generarPosicionAleatoria(200, 470); // Rango de posiciones Y
+        this.recolectado = false;
+        this.valor = 25; // Valor por defecto para soles caídos del cielo
+        this.imagen= new ImageIcon(getClass().getResource("/resources/Sun.png"));
+    }
+
+    /**
+     * Constructor para un sol generado por un Girasol.
+     * @param xPos Posición X inicial.
+     * @param yPos Posición Y inicial.
+     */
+    public Sol(int xPos, int yPos) {
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.recolectado = false;
+        this.valor = 25; // Valor por defecto para soles generados por un Girasol
+    }
+
+    /**
+     * Constructor para un sol generado con un valor específico.
+     * @param xPos  Posición X inicial.
+     * @param yPos  Posición Y inicial.
+     * @param valor Valor del sol.
+     */
+    public Sol(int xPos, int yPos, int valor) {
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.valor = valor;
+        this.recolectado = false;
+    }
+
+    /**
+     * Genera una posición aleatoria dentro de un rango.
+     * @param min Valor mínimo.
+     * @param max Valor máximo.
+     * @return Un entero aleatorio dentro del rango.
+     */
+    private int generarPosicionAleatoria(int min, int max) {
+        Random rand = new Random();
+        return rand.nextInt(max - min + 1) + min;
+    }
+
+    /**
+     * Marca el sol como recolectado.
+     */
+    public void recolectar() {
+        this.recolectado = true;
+    }
+
+    // Getters
+    public int getX() {
+        return xPos;
+    }
+
+    public int getY() {
+        return yPos;
+    }
+
+    public boolean isRecolectado() {
+        return recolectado;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public ImageIcon getImagen() {
+        return imagen;
+    }
+
+    public void setyPos(int yPos) {
+        this.yPos = yPos;
+    }
+
+    public void setxPos(int xPos) {
+        this.xPos = xPos;
+    }
+}
